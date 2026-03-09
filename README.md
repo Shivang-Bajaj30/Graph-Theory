@@ -1,16 +1,60 @@
-# React + Vite
+# 🌳 Graph Theory Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive web application for visualizing Graph Theory concepts, modeled on the **CHRIST (Deemed to be University) — Delhi NCR Campus**. Built with **React** and **Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## React Compiler
+- **Node.js** (v18 or later)
+- **npm**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Installation
 
-## Expanding the ESLint configuration
+```bash
+git clone https://github.com/Shivang-Bajaj30/Graph-Theory.git
+cd Graph-Theory
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run Locally
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
+
+## Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── App.jsx                 # Tab navigation & layout
+├── main.jsx                # React entry point
+├── index.css               # Global styles
+├── data/
+│   └── campusData.js       # Campus graph data & algorithm implementations
+└── components/
+    ├── CampusTree.jsx          # Interactive tree visualization
+    ├── TreeTraversals.jsx      # Animated traversal demos
+    ├── SpanningTree.jsx        # DFS / BFS spanning trees
+    ├── MinSpanningTree.jsx     # Kruskal's & Prim's MST
+    └── DistanceCalculator.jsx  # Dijkstra shortest path
+```
+
+## Tech Stack
+
+| Layer    | Technology   |
+| -------- | ------------ |
+| Frontend | React 19     |
+| Bundler  | Vite 7       |
+| Graphics | SVG (inline) |
+| Styling  | Vanilla CSS  |
+| Linting  | ESLint       |
