@@ -43,7 +43,7 @@ function layoutTree(node, x = 0, y = 0, level = 0, xSpacing = 130, ySpacing = 80
 }
 
 // Color palette by level
-const levelColors = ['#6c63ff', '#00d4aa', '#ff6b9d', '#ffa726', '#42a5f5', '#ab47bc'];
+const levelColors = ['#7ab830', '#00c49a', '#e8557a', '#e09830', '#4a8cde', '#9b6fd4'];
 
 export default function CampusTree() {
     const [collapsed, setCollapsed] = useState({});
@@ -141,7 +141,7 @@ export default function CampusTree() {
                                         key={i}
                                         d={`M ${from.x + 55} ${from.y + 20} C ${from.x + 55} ${(from.y + to.y) / 2 + 20}, ${to.x + 55} ${(from.y + to.y) / 2 + 20}, ${to.x + 55} ${to.y}`}
                                         fill="none"
-                                        stroke={isHighlighted ? levelColors[from.level] : 'rgba(255,255,255,0.08)'}
+                                        stroke={isHighlighted ? levelColors[from.level] : 'rgba(0,0,0,0.1)'}
                                         strokeWidth={isHighlighted ? 2.5 : 1.5}
                                         style={{ transition: 'all 0.3s ease' }}
                                     />
@@ -174,7 +174,7 @@ export default function CampusTree() {
                                             width={nodeWidth}
                                             height={nodeHeight}
                                             rx={8}
-                                            fill={isSelected ? color : isHovered ? `${color}33` : 'rgba(20,20,50,0.9)'}
+                                            fill={isSelected ? color : isHovered ? `${color}18` : '#ffffff'}
                                             stroke={color}
                                             strokeWidth={isSelected ? 2.5 : isHovered ? 2 : 1}
                                             filter={isHovered || isSelected ? `url(#glow-${pos.level % levelColors.length})` : undefined}

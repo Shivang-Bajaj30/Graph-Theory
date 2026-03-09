@@ -21,7 +21,10 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div>
-          <div className="app-logo">Graph Theory Explorer</div>
+          <div className="app-logo">
+            <span className="app-logo-icon">🌳</span>
+            Graph Theory Explorer
+          </div>
           <div className="app-subtitle">CHRIST (Deemed to be University) — Delhi NCR Campus</div>
         </div>
       </header>

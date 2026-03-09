@@ -121,24 +121,24 @@ export default function MinSpanningTree() {
                     {activeStep && (
                         <div className="step-info" style={{ borderLeftColor: activeStep.accepted !== false ? '#00d4aa' : '#ff6b9d' }}>
                             {activeStep.action === 'start' ? (
-                                <div>Starting from node: <strong style={{ color: '#ffa726' }}>{getNodeName(activeStep.currentNode)}</strong></div>
+                                <div>Starting from node: <strong style={{ color: '#e09830' }}>{getNodeName(activeStep.currentNode)}</strong></div>
                             ) : (
                                 <div>
                                     Edge: <strong>{getNodeName(activeStep.edge[0])}</strong> → <strong>{getNodeName(activeStep.edge[1])}</strong>
                                     {' '}(weight: <strong>{activeStep.edge[2]}m</strong>)
                                     {' — '}
                                     {activeStep.accepted !== false
-                                        ? <span style={{ color: '#00d4aa', fontWeight: 700 }}>✓ ACCEPTED</span>
-                                        : <span style={{ color: '#ff6b9d', fontWeight: 700 }}>✗ REJECTED (would create cycle)</span>}
+                                        ? <span style={{ color: '#00c49a', fontWeight: 700 }}>✓ ACCEPTED</span>
+                                        : <span style={{ color: '#e8557a', fontWeight: 700 }}>✗ REJECTED (would create cycle)</span>}
                                 </div>
                             )}
                         </div>
                     )}
 
                     <div className="legend" style={{ marginTop: 12 }}>
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00d4aa' }}></div>MST Edge</div>
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#ff6b9d' }}></div>Rejected Edge</div>
-                        <div className="legend-item"><div className="legend-dot" style={{ background: 'rgba(255,255,255,0.08)' }}></div>Unprocessed Edge</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00c49a' }}></div>MST Edge</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#e8557a' }}></div>Rejected Edge</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: 'rgba(0,0,0,0.1)' }}></div>Unprocessed Edge</div>
                     </div>
 
                     <div className="viz-container">
@@ -152,11 +152,11 @@ export default function MinSpanningTree() {
                                 const isCurrent = key === currentEdgeKey || key === currentEdgeKeyRev || keyR === currentEdgeKey || keyR === currentEdgeKeyRev;
                                 const isRejected = isCurrent && activeStep && activeStep.accepted === false;
 
-                                let color = 'rgba(255,255,255,0.06)';
+                                let color = 'rgba(0,0,0,0.1)';
                                 let sw = 1;
-                                if (isMST) { color = '#00d4aa'; sw = 2.5; }
-                                if (isCurrent && !isRejected && !isMST) { color = '#6c63ff'; sw = 2.5; }
-                                if (isRejected) { color = '#ff6b9d'; sw = 2; }
+                                if (isMST) { color = '#00c49a'; sw = 2.5; }
+                                if (isCurrent && !isRejected && !isMST) { color = '#7ab830'; sw = 2.5; }
+                                if (isRejected) { color = '#e8557a'; sw = 2; }
 
                                 return (
                                     <g key={i}>
@@ -166,7 +166,7 @@ export default function MinSpanningTree() {
                                             style={{ transition: 'all 0.4s ease' }} />
                                         {(isMST || isCurrent) && (
                                             <text x={(from.x + to.x) / 2 + 6} y={(from.y + to.y) / 2 - 6}
-                                                fill={isMST ? '#00d4aa' : isRejected ? '#ff6b9d' : '#6c63ff'}
+                                                fill={isMST ? '#00c49a' : isRejected ? '#e8557a' : '#7ab830'}
                                                 fontSize="9" fontWeight="700" fontFamily="Inter, sans-serif">{w}m</text>
                                         )}
                                     </g>
@@ -179,12 +179,12 @@ export default function MinSpanningTree() {
                                 return (
                                     <g key={n.id}>
                                         <circle cx={n.x} cy={n.y} r={isStart ? 18 : 14}
-                                            fill={isStart ? '#ffa726' : inMST ? 'rgba(0,212,170,0.2)' : isCurrNode ? 'rgba(108,99,255,0.2)' : 'rgba(40,40,80,0.8)'}
-                                            stroke={isStart ? '#ffa726' : inMST ? '#00d4aa' : isCurrNode ? '#6c63ff' : 'rgba(255,255,255,0.1)'}
+                                            fill={isStart ? '#e09830' : inMST ? 'rgba(0,196,154,0.15)' : isCurrNode ? 'rgba(122,184,48,0.15)' : '#ffffff'}
+                                            stroke={isStart ? '#e09830' : inMST ? '#00c49a' : isCurrNode ? '#7ab830' : 'rgba(0,0,0,0.12)'}
                                             strokeWidth={isStart || isCurrNode ? 2.5 : 1.5}
                                             style={{ transition: 'all 0.3s ease' }} />
                                         <text x={n.x} y={n.y + (isStart ? 30 : 26)}
-                                            textAnchor="middle" fill={isStart ? '#ffa726' : inMST ? '#00d4aa' : '#9090b0'}
+                                            textAnchor="middle" fill={isStart ? '#e09830' : inMST ? '#00c49a' : '#5a5a72'}
                                             fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif">
                                             {n.name.length > 14 ? n.name.slice(0, 12) + '…' : n.name}
                                         </text>
@@ -216,9 +216,9 @@ export default function MinSpanningTree() {
                                 ['Greedy Strategy', 'Globally smallest edge', 'Locally smallest edge from tree'],
                             ].map(([prop, k, p], i) => (
                                 <tr key={i}>
-                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.03)', color: 'var(--text-secondary)', fontWeight: 500 }}>{prop}</td>
-                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.03)', color: algorithm === 'kruskal' ? '#6c63ff' : 'var(--text-primary)' }}>{k}</td>
-                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.03)', color: algorithm === 'prim' ? '#6c63ff' : 'var(--text-primary)' }}>{p}</td>
+                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(0,0,0,0.06)', color: 'var(--text-secondary)', fontWeight: 500 }}>{prop}</td>
+                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(0,0,0,0.06)', color: algorithm === 'kruskal' ? '#7ab830' : 'var(--text-primary)' }}>{k}</td>
+                                    <td style={{ padding: '10px 14px', borderBottom: '1px solid rgba(0,0,0,0.06)', color: algorithm === 'prim' ? '#7ab830' : 'var(--text-primary)' }}>{p}</td>
                                 </tr>
                             ))}
                         </tbody>

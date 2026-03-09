@@ -104,9 +104,9 @@ export default function DistanceCalculator() {
                 <div className="card" style={{ gridColumn: '1 / -1' }}>
                     <div className="card-title">🗺️ Campus Graph — Click Any Two Nodes</div>
                     <div className="legend">
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00d4aa' }}></div>Shortest Path</div>
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#6c63ff' }}></div>Source Node</div>
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#ff6b9d' }}></div>Target Node</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00c49a' }}></div>Shortest Path</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#7ab830' }}></div>Source Node</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#e8557a' }}></div>Target Node</div>
                     </div>
 
                     <div className="viz-container">
@@ -118,11 +118,11 @@ export default function DistanceCalculator() {
                                 return (
                                     <g key={i}>
                                         <line x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-                                            stroke={isPath ? '#00d4aa' : 'rgba(255,255,255,0.06)'}
+                                            stroke={isPath ? '#00c49a' : 'rgba(0,0,0,0.1)'}
                                             strokeWidth={isPath ? 3 : 1}
                                             style={{ transition: 'all 0.4s ease' }} />
                                         <text x={(from.x + to.x) / 2 + 6} y={(from.y + to.y) / 2 - 6}
-                                            fill={isPath ? '#00d4aa' : 'rgba(255,255,255,0.15)'}
+                                            fill={isPath ? '#00c49a' : 'rgba(0,0,0,0.2)'}
                                             fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif">{w}m</text>
                                     </g>
                                 );
@@ -131,12 +131,12 @@ export default function DistanceCalculator() {
                                 const isSource = n.id === sourceNode;
                                 const isTarget = n.id === targetNode;
                                 const isOnPath = pathNodeSet.has(n.id);
-                                let fillColor = 'rgba(40,40,80,0.8)';
-                                let strokeColor = 'rgba(255,255,255,0.1)';
+                                let fillColor = '#ffffff';
+                                let strokeColor = 'rgba(0,0,0,0.12)';
                                 let r = 14;
-                                if (isSource) { fillColor = '#6c63ff'; strokeColor = '#6c63ff'; r = 19; }
-                                else if (isTarget) { fillColor = '#ff6b9d'; strokeColor = '#ff6b9d'; r = 19; }
-                                else if (isOnPath) { fillColor = 'rgba(0,212,170,0.3)'; strokeColor = '#00d4aa'; r = 16; }
+                                if (isSource) { fillColor = '#7ab830'; strokeColor = '#7ab830'; r = 19; }
+                                else if (isTarget) { fillColor = '#e8557a'; strokeColor = '#e8557a'; r = 19; }
+                                else if (isOnPath) { fillColor = 'rgba(0,196,154,0.2)'; strokeColor = '#00c49a'; r = 16; }
 
                                 return (
                                     <g key={n.id} style={{ cursor: 'pointer' }} onClick={() => handleNodeClick(n.id)}>
@@ -145,7 +145,7 @@ export default function DistanceCalculator() {
                                             strokeWidth={isSource || isTarget ? 3 : 1.5}
                                             style={{ transition: 'all 0.3s ease' }} />
                                         <text x={n.x} y={n.y + r + 12}
-                                            textAnchor="middle" fill={isSource ? '#6c63ff' : isTarget ? '#ff6b9d' : isOnPath ? '#00d4aa' : '#9090b0'}
+                                            textAnchor="middle" fill={isSource ? '#7ab830' : isTarget ? '#e8557a' : isOnPath ? '#00c49a' : '#5a5a72'}
                                             fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif">
                                             {n.name.length > 14 ? n.name.slice(0, 12) + '…' : n.name}
                                         </text>

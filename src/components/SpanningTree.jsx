@@ -79,9 +79,9 @@ export default function SpanningTree() {
                         {method === 'dfs' ? '🔍 DFS' : '📊 BFS'} Spanning Tree Visualization
                     </div>
                     <div className="legend">
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00d4aa' }}></div>Spanning Tree Edge</div>
-                        {!showSpanning && <div className="legend-item"><div className="legend-dot" style={{ background: 'rgba(255,255,255,0.1)' }}></div>Non-Tree Edge</div>}
-                        <div className="legend-item"><div className="legend-dot" style={{ background: '#ffa726' }}></div>Start Node</div>
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#00c49a' }}></div>Spanning Tree Edge</div>
+                        {!showSpanning && <div className="legend-item"><div className="legend-dot" style={{ background: 'rgba(0,0,0,0.1)' }}></div>Non-Tree Edge</div>}
+                        <div className="legend-item"><div className="legend-dot" style={{ background: '#e09830' }}></div>Start Node</div>
                     </div>
 
                     <div className="viz-container">
@@ -95,7 +95,7 @@ export default function SpanningTree() {
                                     <g key={i}>
                                         <line
                                             x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-                                            stroke={isSpanning ? '#00d4aa' : 'rgba(255,255,255,0.06)'}
+                                            stroke={isSpanning ? '#00c49a' : 'rgba(0,0,0,0.1)'}
                                             strokeWidth={isSpanning ? 2.5 : 1}
                                             strokeDasharray={isSpanning ? '' : '4 4'}
                                             style={{ transition: 'all 0.4s ease' }}
@@ -103,7 +103,7 @@ export default function SpanningTree() {
                                         {isSpanning && (
                                             <text
                                                 x={(from.x + to.x) / 2 + 6} y={(from.y + to.y) / 2 - 6}
-                                                fill="#ffa726" fontSize="9" fontWeight="600" fontFamily="Inter, sans-serif"
+                                                fill="#e09830" fontSize="9" fontWeight="600" fontFamily="Inter, sans-serif"
                                             >
                                                 {w}m
                                             </text>
@@ -118,15 +118,15 @@ export default function SpanningTree() {
                                     <g key={n.id}>
                                         <circle
                                             cx={n.x} cy={n.y} r={isStart ? 18 : 14}
-                                            fill={isStart ? '#ffa726' : inTree ? 'rgba(0,212,170,0.2)' : 'rgba(40,40,80,0.8)'}
-                                            stroke={isStart ? '#ffa726' : inTree ? '#00d4aa' : 'rgba(255,255,255,0.1)'}
+                                            fill={isStart ? '#e09830' : inTree ? 'rgba(0,196,154,0.15)' : '#ffffff'}
+                                            stroke={isStart ? '#e09830' : inTree ? '#00c49a' : 'rgba(0,0,0,0.12)'}
                                             strokeWidth={isStart ? 2.5 : 1.5}
                                             style={{ transition: 'all 0.3s ease', cursor: 'pointer' }}
                                             onClick={() => setStartNode(n.id)}
                                         />
                                         <text
                                             x={n.x} y={n.y + (isStart ? 30 : 26)}
-                                            textAnchor="middle" fill={isStart ? '#ffa726' : '#9090b0'}
+                                            textAnchor="middle" fill={isStart ? '#e09830' : '#5a5a72'}
                                             fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif"
                                         >
                                             {n.name.length > 14 ? n.name.slice(0, 12) + '…' : n.name}

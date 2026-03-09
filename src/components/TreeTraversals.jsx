@@ -2,10 +2,10 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { campusTree, preOrder, postOrder, inOrder, levelOrder, getNodeName } from '../data/campusData';
 
 const TRAVERSALS = {
-    preOrder: { name: 'Pre-Order', fn: preOrder, color: '#6c63ff', desc: 'Visit root → left subtree → right subtree (NLR)' },
-    inOrder: { name: 'In-Order', fn: inOrder, color: '#00d4aa', desc: 'Visit left subtree → root → right subtree (LNR)' },
-    postOrder: { name: 'Post-Order', fn: postOrder, color: '#ff6b9d', desc: 'Visit left subtree → right subtree → root (LRN)' },
-    levelOrder: { name: 'Level-Order (BFS)', fn: levelOrder, color: '#ffa726', desc: 'Visit nodes level by level (Breadth-First)' },
+    preOrder: { name: 'Pre-Order', fn: preOrder, color: '#7ab830', desc: 'Visit root → left subtree → right subtree (NLR)' },
+    inOrder: { name: 'In-Order', fn: inOrder, color: '#00c49a', desc: 'Visit left subtree → root → right subtree (LNR)' },
+    postOrder: { name: 'Post-Order', fn: postOrder, color: '#e8557a', desc: 'Visit left subtree → right subtree → root (LRN)' },
+    levelOrder: { name: 'Level-Order (BFS)', fn: levelOrder, color: '#e09830', desc: 'Visit nodes level by level (Breadth-First)' },
 };
 
 const PSEUDOCODE = {
@@ -70,7 +70,7 @@ function flatLayout(node, startX = 40, y = 40, xGap = 110, yGap = 78, collapsed 
     return { positions, edges, totalWidth: cx + 40 };
 }
 
-const levelColors = ['#6c63ff', '#00d4aa', '#ff6b9d', '#ffa726', '#42a5f5'];
+const levelColors = ['#7ab830', '#00c49a', '#e8557a', '#e09830', '#4a8cde'];
 
 export default function TreeTraversals() {
     const [traversalType, setTraversalType] = useState('preOrder');
@@ -216,7 +216,7 @@ export default function TreeTraversals() {
                                             key={i}
                                             x1={from.x + 45} y1={from.y + 18}
                                             x2={to.x + 45} y2={to.y}
-                                            stroke={edgeVisited ? trav.color : 'rgba(255,255,255,0.06)'}
+                                            stroke={edgeVisited ? trav.color : 'rgba(0,0,0,0.1)'}
                                             strokeWidth={edgeVisited ? 2 : 1}
                                             style={{ transition: 'all 0.3s ease' }}
                                         />
@@ -231,13 +231,13 @@ export default function TreeTraversals() {
                                         <g key={pos.id} transform={`translate(${pos.x}, ${pos.y})`}>
                                             <rect
                                                 width={w} height={h} rx={6}
-                                                fill={isCurrent ? trav.color : isVisited ? `${trav.color}25` : 'rgba(20,20,50,0.9)'}
-                                                stroke={isVisited ? trav.color : 'rgba(255,255,255,0.1)'}
+                                                fill={isCurrent ? trav.color : isVisited ? `${trav.color}18` : '#ffffff'}
+                                                stroke={isVisited ? trav.color : 'rgba(0,0,0,0.12)'}
                                                 strokeWidth={isCurrent ? 2.5 : 1}
                                                 style={{ transition: 'all 0.3s ease' }}
                                             />
                                             <text x={w / 2} y={h / 2 + 1} textAnchor="middle" dominantBaseline="central"
-                                                fill={isCurrent ? '#fff' : isVisited ? trav.color : 'rgba(255,255,255,0.5)'}
+                                                fill={isCurrent ? '#fff' : isVisited ? trav.color : 'rgba(0,0,0,0.35)'}
                                                 fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif">
                                                 {pos.name.length > 12 ? pos.name.slice(0, 10) + '…' : pos.name}
                                             </text>
